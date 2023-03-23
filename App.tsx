@@ -1,8 +1,19 @@
-import { View, Text, Image, Dimensions, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native'
+import {
+  View,
+  Text,
+  Image,
+  Dimensions,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+  Button,
+  NativeModules,
+} from 'react-native';
 import React, {useRef} from 'react';
 import imagepath from './constants/imagepath';
 import Video from 'react-native-video';
 import ViewMoreText from 'react-native-view-more-text';
+const {Version} = NativeModules;
 
 const {height, width} = Dimensions.get('window');
 
@@ -14,6 +25,9 @@ const App = () => {
   };
   const onError = (e: any) => {
     console.log('error', e);
+  };
+  const onPress = () => {
+    Version.getVersion();
   };
 
   return (
@@ -41,6 +55,9 @@ const App = () => {
             source={imagepath.videoicon}></Image>
         </View>
       </SafeAreaView>
+      <View>
+        <Button title="NativeModule Button" onPress={onPress}></Button>
+      </View>
 
       <View style={styles.bottomView}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -97,8 +114,8 @@ const App = () => {
         </View>
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   backgroundVideo: {
@@ -151,4 +168,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App
+export default App;
