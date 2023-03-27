@@ -13,7 +13,7 @@ import React, {useRef} from 'react';
 import imagepath from './constants/imagepath';
 import Video from 'react-native-video';
 import ViewMoreText from 'react-native-view-more-text';
-const {Version} = NativeModules;
+const {Version, SDKVersion} = NativeModules;
 
 const {height, width} = Dimensions.get('window');
 
@@ -28,6 +28,7 @@ const App = () => {
   };
   const onPress = () => {
     Version.getVersion();
+    SDKVersion.VVersion();
   };
 
   return (

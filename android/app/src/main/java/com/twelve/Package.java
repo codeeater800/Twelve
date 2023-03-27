@@ -19,12 +19,14 @@ public class Package implements ReactPackage {
         return Collections.emptyList();
     }
 
+    @NonNull
     @Override
     public List<NativeModule> createNativeModules(
-            ReactApplicationContext reactContext) {
+            @NonNull ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
 
         modules.add(new Version(reactContext));
+        modules.add(new SDKVersion(reactContext));
 
         return modules;
     }
