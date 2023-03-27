@@ -15,16 +15,16 @@ public class SDKVersion extends ReactContextBaseJavaModule {
         super(context);
     }
 
+
     @ReactMethod
     public void VVersion() {
-
-        InstaShortsView res = new InstaShortsView(getReactApplicationContext());
-
-        Log.d("Version", "Version number is" + res.getVersion());
+      InstaShortsView res = new InstaShortsView(getReactApplicationContext());
+      Log.d("Version", "Version number is" + res.getVersion());
     }
     @NonNull
     @Override
     public String getName() {
-        return "SDK";
+
+        return "SDKVersion";
     }
 }
