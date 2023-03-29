@@ -23,7 +23,7 @@ public class Version extends ReactContextBaseJavaModule{
 
         Log.d("Version", "React Native AppVersion 1.0");
     }
-
+    
     @NonNull
     @Override
     public String getName() {
