@@ -20,19 +20,26 @@ import android.view.View;
 public class SDKVersion extends ReactContextBaseJavaModule {
 
 
-    private static ReactApplicationContext reactContext;
-     SDKVersion(ReactApplicationContext context) {
-        super(context);
-        reactContext = context;
+ //   private static ReactApplicationContext reactContext;
+     SDKVersion(ReactApplicationContext reactContext) {
+        super(reactContext);
+   //     reactContext = context;
 
      }
 
 
     @ReactMethod
     public void VVersion() {
-      InstaShortsView res = new InstaShortsView(reactContext);
-      Activity activity = new Activity();
+      InstaShortsView res = new InstaShortsView(getReactApplicationContext());
+    //  Activity activity = new Activity();
       Log.d("Version", "Version number is" + res.getVersion());
+    }
+
+    @NonNull
+    @Override
+    public String getName() {
+
+        return "SDKVersion";
     }
 
    // private static final String ERROR_NO_ACTIVITY = "no activity";
@@ -47,10 +54,5 @@ public class SDKVersion extends ReactContextBaseJavaModule {
       //  }
  //   }
 
-    @NonNull
-    @Override
-    public String getName() {
 
-        return "SDKVersion";
-    }
 }
