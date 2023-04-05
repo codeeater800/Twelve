@@ -16,6 +16,8 @@ import android.view.WindowManager;
 import android.view.Window;
 import android.view.View;
 
+import java.util.Objects;
+
 
 public class SDKVersion extends ReactContextBaseJavaModule {
 
@@ -30,9 +32,9 @@ public class SDKVersion extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void VVersion() {
-      InstaShortsView res = new InstaShortsView(getReactApplicationContext());
+      InstaShortsView res = new InstaShortsView(Objects.requireNonNull(getCurrentActivity()));
     //  Activity activity = new Activity();
-      Log.d("Version", "Version number is" + res.getVersion());
+      Log.d("Version", "Version number is " + res.getVersion());
     }
 
     @NonNull
