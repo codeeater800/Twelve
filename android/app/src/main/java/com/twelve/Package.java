@@ -30,6 +30,7 @@ public class Package implements ReactPackage {
 
         modules.add(new Version(reactContext));
         modules.add(new SDKVersion(reactContext));
+        modules.add(new Media(reactContext));
 
         return modules;
     }

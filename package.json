@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@svanboxel/visibility-sensor-react-native": "^1.0.2",
     "react": "18.2.0",
     "react-native": "0.71.4",
     "react-native-video": "^5.2.1",
