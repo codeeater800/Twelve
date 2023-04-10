@@ -12,41 +12,41 @@ import {
   NativeModules,
 } from 'react-native';
 import Video from 'react-native-video';
-import React, { useRef, useState, useEffect } from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import imagepath from './constants/imagepath';
 import ViewMoreText from 'react-native-view-more-text';
 const {Version, SDKVersion} = NativeModules;
 
 const {height, width} = Dimensions.get('window');
 
-
-
 const videodata = [
-  { 
-        uri :  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" ,
-        id : "Big Buck Bunny"
-      },
-      { uri :  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" ,
-        id : "Elephant Dream"
-      },
-      { uri : "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" ,
-        id : "For Bigger Blazes"
-      },
-      { uri : "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" ,
-        id : "For Bigger Escape"
-      },
-      { uri : "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" ,
-        id : "For Bigger Fun"
-      }
+  {
+    url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+    id: 'Big Buck Bunny',
+  },
+  {
+    url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+    id: 'Elephant Dream',
+  },
+  {
+    url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    id: 'For Bigger Blazes',
+  },
+  {
+    url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    id: 'For Bigger Escape',
+  },
+  {
+    url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+    id: 'For Bigger Fun',
+  },
 ];
 
 
 
 
-
-
 const App = () => {
-
+  
   const VideoRef = useRef(null);
 
   const onBuffer = (e: any) => {
@@ -58,13 +58,15 @@ const App = () => {
   const onPress = () => {
     Version.getVersion();
     SDKVersion.VVersion();
-  }
+  };
 
   return (
-  
-      
-      <View style={{ flex: 1, backgroundColor: 'gray' }}>
-            <Video
+   
+
+   <View style={{ flex: 1, backgroundColor: 'gray' }}>
+   
+
+  <Video
           source={{
             uri: 'https://assets.mixkit.co/videos/preview/mixkit-man-doing-tricks-with-roller-skates-in-a-parking-lot-34553-large.mp4',
           }}
@@ -77,7 +79,9 @@ const App = () => {
           paused={false}
           style={styles.backgroundVideo}></Video>
 
-        <SafeAreaView>
+
+
+       <SafeAreaView>
           <View style={styles.flexHorizontal}>
             <Text style={styles.textStyle}>VideoShorts</Text>
             <Image
@@ -102,10 +106,9 @@ const App = () => {
               <Text>Call from NativeModule</Text>
             </Pressable>
           </View>
+ 
 
-
-
-          <ViewMoreText
+   <ViewMoreText
             numberOfLines={1}
             renderViewMore={this.renderViewMore}
             renderViewLess={this.renderViewLess}
@@ -150,9 +153,9 @@ const App = () => {
           </View>
         </View>
       </View>
-  );
+ );
 };
-
+ 
 const styles = StyleSheet.create({
   backgroundVideo: {
     position: 'absolute',
