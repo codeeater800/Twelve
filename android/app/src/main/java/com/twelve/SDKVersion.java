@@ -32,6 +32,8 @@ public class SDKVersion extends ReactContextBaseJavaModule {
     public void VVersion() {
       InstaShortsView res = new InstaShortsView(Objects.requireNonNull(getCurrentActivity()));
       Log.d("Version", "Version number is " + res.getVersion());
+
+
     }
 
     @NonNull

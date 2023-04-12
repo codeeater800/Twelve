@@ -11,15 +11,17 @@ import {
   Button,
   NativeModules,
 } from 'react-native';
-import Video from 'react-native-video';
+import Video, {VideoProperties} from 'react-native-video';
 import React, {useRef, useState, useEffect} from 'react';
 import imagepath from './constants/imagepath';
 import ViewMoreText from 'react-native-view-more-text';
-const {Version, SDKVersion} = NativeModules;
+
+
+const {Version, SDKVersion, Media} = NativeModules;
 
 const {height, width} = Dimensions.get('window');
 
-const videodata = [
+/* const videodata: VideoItem[] = [
   {
     url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
     id: 'Big Buck Bunny',
@@ -39,15 +41,49 @@ const videodata = [
   {
     url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
     id: 'For Bigger Fun',
-  },
-];
+  }, */
 
 
+/* const VideoListItem = ({item}: {item: VideoItem}) => {
+  const [paused, setPaused] = useState(true);
+  const videoRef = useRef<Video>(null);
 
+  const handlePlayPause = () => {
+    if (videoRef.current) {
+      if (paused) {
+        videoRef.current.play();
+      } else {
+        videoRef.current.pause();
+      }
+      setPaused(!paused);
+    }
+  };
+
+  const handleVideoEnd = () => {
+    if (videoRef.current) {
+      videoRef.current.seek(0);
+      setPaused(true);
+    }
+  };
+
+  return (
+    <View style={styles.videoContainer}>
+      <TouchableOpacity onPress={handlePlayPause}>
+        <Video
+          ref={videoRef}
+          source={{uri: item.url}}
+          style={styles.video}
+          resizeMode="contain"
+          paused={paused}
+          onEnd={handleVideoEnd}
+        />
+        {!paused && <Text style={styles.pauseOverlay}>PAUSED</Text>}
+      </TouchableOpacity>
+    </View>
+  );
+}; */
 
 const App = () => {
-  
-  const VideoRef = useRef(null);
 
   const onBuffer = (e: any) => {
     console.log('buffering', e);
@@ -58,20 +94,21 @@ const App = () => {
   const onPress = () => {
     Version.getVersion();
     SDKVersion.VVersion();
+    Media.MediaCall();
   };
 
   return (
-   
+    
 
-   <View style={{ flex: 1, backgroundColor: 'gray' }}>
-   
-
-  <Video
+      <View style={{flex: 1, backgroundColor: 'gray'}}>
+        <Video
           source={{
-            uri: 'https://assets.mixkit.co/videos/preview/mixkit-man-doing-tricks-with-roller-skates-in-a-parking-lot-34553-large.mp4',
+            uri: 'https://assets.mixkit.co/videos/preview/mixkit-two-avenues-with-many-cars-traveling-at-night-34562-large.mp4',
           }}
-          poster={'https://w0.peakpx.com/wallpaper/1000/403/HD-wallpaper-vertical-waves-sea-water.jpg'}
-          ref={VideoRef}
+          poster={
+            'https://w0.peakpx.com/wallpaper/1000/403/HD-wallpaper-vertical-waves-sea-water.jpg'
+          }
+         // ref={VideoRef}
           onBuffer={onBuffer}
           resizeMode="cover"
           onError={onError}
@@ -79,25 +116,23 @@ const App = () => {
           paused={false}
           style={styles.backgroundVideo}></Video>
 
-
-
-       <SafeAreaView>
+        <SafeAreaView>
           <View style={styles.flexHorizontal}>
             <Text style={styles.textStyle}>VideoShorts</Text>
             <Image
-              style={{ alignItems: 'flex-end' }}
+              style={{alignItems: 'flex-end'}}
               source={imagepath.videoicon}></Image>
           </View>
         </SafeAreaView>
 
         <View style={styles.bottomView}>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Image source={require('../Twelve/icons/profileicon.png')} />
-            <Text style={{ marginHorizontal: 8, fontSize: 16, color: 'white' }}>
+            <Text style={{marginHorizontal: 8, fontSize: 16, color: 'white'}}>
               Profile Name
             </Text>
             <TouchableOpacity>
-              <Text style={{ marginHorizontal: 8, color: 'white' }}> Follow</Text>
+              <Text style={{marginHorizontal: 8, color: 'white'}}> Follow</Text>
             </TouchableOpacity>
           </View>
 
@@ -106,13 +141,12 @@ const App = () => {
               <Text>Call from NativeModule</Text>
             </Pressable>
           </View>
- 
 
-   <ViewMoreText
+          <ViewMoreText
             numberOfLines={1}
             renderViewMore={this.renderViewMore}
             renderViewLess={this.renderViewLess}
-            textStyle={{ textAlign: 'center' }}>
+            textStyle={{textAlign: 'center'}}>
             <Text
               style={{
                 marginHorizontal: 5,
@@ -121,12 +155,12 @@ const App = () => {
                 justifyContent: 'flex-start',
               }}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-              pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum.{' '}
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.{' '}
             </Text>
           </ViewMoreText>
 
@@ -153,9 +187,10 @@ const App = () => {
           </View>
         </View>
       </View>
- );
-};
- 
+    
+  );
+}
+
 const styles = StyleSheet.create({
   backgroundVideo: {
     position: 'absolute',
@@ -215,13 +250,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   videoContainer: {
-    width,
-    height: 300,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 200,
+    marginBottom: 10,
   },
   video: {
-    width,
-    height: 300,
+    flex: 1,
+    alignSelf: 'stretch',
   },
 });
-
 export default App;
